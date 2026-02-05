@@ -1,0 +1,24 @@
+Class: fileHandler
+
+---------------------------------------------------------
+Responsibility:
+
+Handle file reading for the program
+---------------------------------------------------------
+Instance variables:
+- dataPath: String
+- reader: bufferedReader
+- output: String
+---------------------------------------------------------
+Constructor:
++ fileHandler(path: String)
+    = load the path of the file
+Methods:
++ fileOut() --> String
+    = returns contents of file
++ changePath(path: String) --> void
+    = change the path and load the file
++ path() --> String
+    = returns current path loaded
+- loadFile() --> String
+    = loads the content of the file given into `output`
