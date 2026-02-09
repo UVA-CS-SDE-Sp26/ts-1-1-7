@@ -17,6 +17,6 @@ class fileHandlerTest {
     void loadFileAndOutputTest() {
         fileHandler handler = new fileHandler("src/files/secret.txt");
         String output = handler.fileOut();
-        assertEquals(output, "java is a fork of c");
+        assertEquals("Java is based on c", output);
     }
 }
