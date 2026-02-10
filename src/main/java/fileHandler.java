@@ -14,12 +14,7 @@ public class fileHandler {
     private String output;
 
     public fileHandler(String path) {
-        dataPath = path;
-        try{
-            this.loadFile();
-        } catch (IOException e){
-            System.out.println("File not found: Check Path?");
-        }
+        this.changePath(path);
 
     }
 
@@ -32,7 +27,16 @@ public class fileHandler {
         return output;
     }
 
-    public void loadFile() throws IOException {
+    public void changePath(String path){
+        dataPath = path;
+        try{
+            this.loadFile();
+        } catch (IOException e){
+            System.out.println("File not found: Check Path?");
+        }
+    }
+
+    private void loadFile() throws IOException {
         reader = new BufferedReader(new FileReader(dataPath));
         StringBuilder contentLoader = new StringBuilder();
         String line;
