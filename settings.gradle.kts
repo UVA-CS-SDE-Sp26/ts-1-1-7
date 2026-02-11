@@ -1,1 +1,1 @@
-rootProject.name = "TopSecret"
+rootProject.name = "java.TopSecret"
