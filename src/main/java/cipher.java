@@ -6,23 +6,12 @@ import java.util.Scanner;
 
 public class cipher {
     // decipher method if user only inputs cipher string
-    public static String decipher(String cipherString) throws Exception
+    public static String decipher(String cipherString, String uncipheredValues, String cipherKey) throws Exception
     {
         File keyFile = new File("ciphers/key.txt"); // access txt file with key
         Scanner fileReader = new Scanner(keyFile);
 
-        String uncipheredValues = "";
-        String cipherKey = "";
-
         boolean validation;
-
-        // iterates through the txt file
-        if (fileReader.hasNext()){
-            uncipheredValues = fileReader.nextLine(); // assign first line of text to uncipheredValues
-        }
-        if (fileReader.hasNext()){
-            cipherKey = fileReader.nextLine(); // assign second line of text to cipherKey
-        }
 
         validation = validate(cipherString, cipherKey, uncipheredValues); // calls validate method to check if the cipher string and data in txt file is valid
 
@@ -32,50 +21,6 @@ public class cipher {
         }
 
         return decipherString(cipherString, cipherKey, uncipheredValues); // if validation is true then will return deciphered string using decipherString method
-    }
-
-    // decipher method if the user inputs both cipher string and key
-    public static String decipher(String cipherString, String key) throws Exception
-    {
-        String keyFilePath;
-
-        // checks to see if user inputs key file with a .txt or not
-        if(!key.toLowerCase().endsWith(".txt")){
-            keyFilePath = "ciphers/"+key+".txt"; // if user does not end with .txt it will add .txt at the end to make it a valid file path
-        }
-        else{
-            keyFilePath = "ciphers/"+key; // if user does end with .txt file it will add ciphers/ to make it a valid file path
-        }
-
-        File keyFile = new File(keyFilePath);
-
-        // check to see if the txt file exist in the file path if it does not exist will return a not found statement
-        if (!keyFile.exists()) {
-            return ("File: " + key + " Not Found");
-        }
-
-        Scanner fileReader = new Scanner(keyFile);
-
-
-        String uncipheredValues = "";
-        String cipherKey = "";
-
-        boolean validation;
-
-        if (fileReader.hasNext()){
-            uncipheredValues = fileReader.nextLine();
-        }
-        if (fileReader.hasNext()){
-            cipherKey = fileReader.nextLine();
-        }
-
-        validation = validate(cipherString, cipherKey, uncipheredValues);
-
-        if(!validation){
-            return "failed validation";
-        }
-
-        return decipherString(cipherString, cipherKey, uncipheredValues);
     }
 
 
