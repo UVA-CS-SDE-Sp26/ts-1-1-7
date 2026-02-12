@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ProgramControl {
     private static final String DATA_FOLDER = "data";
-    private static final String DEFAULT_KEY_FILE = "ciphers/key.txt";
 
     // Called when program runs with no arguments.
     // Prints the numbered list: 01 filea.txt   02 fileb.txt    ...
@@ -61,26 +60,27 @@ public class ProgramControl {
         }
 
         // Team Member D: decipher using key file
-        String keyFilePath;
-        if (keyArgPath == null || keyArgPath.isBlank()) {
-            keyFilePath = DEFAULT_KEY_FILE;
-        } else {
-            keyFilePath = keyArgPath;
+        try {
+            String readableText;
+
+            if (keyArgPath == null || keyArgPath.isBlank()) {
+                // NULL keypath means default key
+                readableText = cipher.decipher(cipheredText);
+            } else {
+                // Inputs custom key
+                readableText = cipher.decipher(cipheredText, keyArgPath);
+            }
+            // prints the deciphered text
+            System.out.println(readableText);
         }
-
-        String readableText = Cipher.decipher(cipheredText, keyFilePath);
-
-        if (readableText == null) {
-            System.out.println("Error: Cipher validation failed (text contains characters not in cipher key).");
-            return;
+        catch (Exception e){
+            System.out.println("Error: Could not decipher file");
         }
-
-        System.out.println(readableText);
     }
 
     // Helper method for printFileList()
     // Lists files in data folder and returns them sorted (alphabetical)
-    private static List<String> listDataFiles() {
+    public static List<String> listDataFiles() {
         File folder = new File(DATA_FOLDER);
         File[] files = folder.listFiles();
 
@@ -100,7 +100,7 @@ public class ProgramControl {
 
     // Helper method to convert "01" -> 0, "02" -> 1, etc...
     // Returns -1 if invalid
-    private static int parseFileIdToIndex(String fileId) {
+    public static int parseFileIdToIndex(String fileId) {
         if (fileId == null || fileId.length() != 2)
             return -1;
         if (!Character.isDigit(fileId.charAt(0)) || !Character.isDigit(fileId.charAt(1)))

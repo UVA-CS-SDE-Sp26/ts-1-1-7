@@ -10,6 +10,18 @@ Print either:
   (b) contents of selected file (one or two args)
   (c) error message, then exit
 -------------------
+Functions:
++ printFileList() : void
+    = Print numbered list of files in data folder
++ displayFile(fileId : String) : void
+    = Display selected file using default key
++ displayFile(fileId : String, keyArgPath : String) : void
+    = Display selected file using custom key
++ listDataFiles() : List<String>
+    = Return sorted filenames
++ parseFileIdToIndex(fileId : String) : int
+    = Convert "01" -> 0, "02" -> 1; return -1 if invalid
+-------------------
 Pseudocode:
 Get list of files from FileHandler
 
