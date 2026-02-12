@@ -21,6 +21,8 @@ public class TopSecret {
             fileHandler = new fileHandler(fileID);
             String fileContent = fileHandler.fileOut(); //TODO FOR CIPHER: Pass fileContent into cipher object
                                                         // in order to get file content to decrypt
+            fileHandler.changePath(key);
+            String keyContent = fileHandler.fileOut(); //TODO FOR CIPHER: Pass this as your "second arg" to get the key string
 
             System.out.println("Processing file: " + fileID + " with Custom Key: " + key);
 
