@@ -1,0 +1,27 @@
+User Interface Plan - Role A (Isaac)
+
+This document outlines how the command line interface will handle user inputs.
+The main class will parse the arguments passed to 'java topsecret'.
+
+Command Structure:
+java topsecret [FileID] [OptionalKey]
+
+Scenarios:
+
+1. No Arguments (List Mode)
+   - Input: java topsecret
+   - Action: Ask Role C to print the list of available files.
+   - Output Example:
+       01 filea.txt
+       02 fileb.txt
+
+2. One Argument (Default Decipher)
+   - Input: java topsecret 01
+   - Action: Open the file corresponding to "01" using the default cipher key.
+
+3. Two Arguments (Custom Key)
+   - Input: java topsecret 01 mySecretKey
+   - Action: Open file "01" but use "mySecretKey" to decipher it instead of the default.
+
+Error Handling:
+   - If the user types invalid arguments (e.g., too many args), the program will print a short usage guide and exit.
