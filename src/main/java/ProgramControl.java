@@ -7,7 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProgramControl {
-    private static final String DATA_FOLDER = "data";
+    private static final String DATA_FOLDER = "src" + File.separator + "files";
+    private static final String DEFAULT_KEY_FILE = "key.txt";
 
     // Called when program runs with no arguments.
     // Prints the numbered list: 01 filea.txt   02 fileb.txt    ...
@@ -18,7 +19,7 @@ public class ProgramControl {
             return;
         }
 
-        for (int i = 0; i < files.size(); i++) {
+        for (int i  = 0; i < files.size(); i++) {
             System.out.printf("%02d %s%n", i + 1, files.get(i));
         }
     }
@@ -62,16 +63,25 @@ public class ProgramControl {
         // Team Member D: decipher using key file
         try {
             String readableText;
+            String keyFilePath;
 
             if (keyArgPath == null || keyArgPath.isBlank()) {
-                // NULL keypath means default key
-                readableText = cipher.decipher(cipheredText);
+                keyFilePath = DATA_FOLDER + File.separator + DEFAULT_KEY_FILE;  // default key file in /data
             } else {
-                // Inputs custom key
-                readableText = cipher.decipher(cipheredText, keyArgPath);
+                keyFilePath = keyArgPath; // user provided path
             }
-            // prints the deciphered text
+            // Read key file (cipher combination) content
+            fileHandler keyFH = new fileHandler(keyFilePath);
+            String keyData = keyFH.fileOut();
+
+            if (keyData == null) {
+                System.out.println("Error: Could not read key file: " + keyFilePath);
+                return;
+            }
+
+            readableText = cipher.decipher(cipheredText, keyData);
             System.out.println(readableText);
+
         }
         catch (Exception e){
             System.out.println("Error: Could not decipher file");
