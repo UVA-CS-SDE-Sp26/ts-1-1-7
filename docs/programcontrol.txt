@@ -15,7 +15,7 @@ Functions:
     = Print numbered list of files in data folder
 + displayFile(fileId : String) : void
     = Display selected file using default key
-+ displayFile(fileId : String, keyArgPath : String) : void
++ displayFile(fileId : String, keyFileName : String) : void
     = Display selected file using custom key
 + listDataFiles() : List<String>
     = Return sorted filenames
