@@ -51,5 +51,11 @@ public class cipherTest {
         String result = cipher.decipher("eph      eph", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\nbcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890a");
         assertEquals("dog      dog", result, "Should return dog      dog");
     }
+
+    @Test
+    void testIfWillReturnTrueAndInvalidData() throws Exception{
+        String result = cipher.decipher("eph\n cat", "dog\neph");
+        assertEquals("dog\nFailed validation", result, "Should return dog\n Failed validation");
+    }
 }
 
