@@ -22,7 +22,8 @@ public class ProgramControlTest {
         Files.writeString(Path.of("src/files/ProgramControlTestB.txt"), "test1");
         Files.writeString(Path.of("src/files/ProgramControlTestA.txt"), "test2");
         Files.writeString(Path.of("src/files/ProgramControlTestC.txt"), "test3");
-        assertEquals(List.of("ProgramControlTestA.txt", "ProgramControlTestB.txt", "ProgramControlTestC.txt"), ProgramControl.listDataFiles());
+        assertEquals(List.of("ProgramControlTestA.txt", "ProgramControlTestB.txt", "ProgramControlTestC.txt",
+                "secret.txt", "secret2.txt"), ProgramControl.listDataFiles());
     }
 
 
