@@ -1,0 +1,49 @@
+Program Control
+------------------
+Tasks:
+- Connect the command-line inputs (A) to file handler (B)
+    - Request file contents and return readable text
+- Program executed with no arguments: Return a list of files available (From B)
+- Apply deciphering (From D)
+Print either:
+  (a) numbered list of available files (no args)
+  (b) contents of selected file (one or two args)
+  (c) error message, then exit
+-------------------
+Functions:
++ printFileList() : void
+    = Print numbered list of files in data folder
++ displayFile(fileId : String) : void
+    = Display selected file using default key
++ displayFile(fileId : String, keyArgPath : String) : void
+    = Display selected file using custom key
++ listDataFiles() : List<String>
+    = Return sorted filenames
++ parseFileIdToIndex(fileId : String) : int
+    = Convert "01" -> 0, "02" -> 1; return -1 if invalid
+-------------------
+Pseudocode:
+Get list of files from FileHandler
+
+if args.length == 0:
+    printFileList(files)
+    exit
+if 1 or 2 args:
+    Check fileID is valid (01, 02, etc.)
+    if invalid:
+        Print error
+        Print file list
+        exit
+    filename = files[fileID number]
+    text = read file (filename)
+
+    if 2 args:
+        key = args[1]
+    else:
+        key = default key
+
+    text = Deciphered text with key (D)
+    print text
+    exit
+
+end
