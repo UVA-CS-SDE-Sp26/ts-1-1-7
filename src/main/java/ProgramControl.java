@@ -92,9 +92,9 @@ public class ProgramControl {
     }
 
     // Helper method for printFileList()
-    // Lists files in data folder and returns them sorted (alphabetical)
+    // Lists files in files folder and returns them sorted (alphabetical)
     public static List<String> listDataFiles() {
-        File folder = new File(DATA_FOLDER);
+        File folder = new File(FILES_FOLDER);
         File[] files = folder.listFiles();
 
         List<String> names = new ArrayList<>();

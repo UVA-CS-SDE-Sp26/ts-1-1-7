@@ -2,10 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProgramControlTest {
     @Test
@@ -21,19 +18,13 @@ public class ProgramControlTest {
     }
 
     @Test
-    void listDataFiles_returnsSortedFiles() throws Exception {
-        Path data = Paths.get("data");
-        Files.createDirectories(data);
-
-        // create fake files
-        Files.createFile(data.resolve("z.txt"));
-        Files.createFile(data.resolve("a.txt"));
-        Files.createFile(data.resolve("m.txt"));
-
-        List<String> result = ProgramControl.listDataFiles();
-
-        assertEquals(List.of("a.txt", "m.txt", "z.txt"), result);
+    void listSortedDataFilesTest() throws Exception {
+        Files.writeString(Path.of("src/files/ProgramControlTestB.txt"), "test1");
+        Files.writeString(Path.of("src/files/ProgramControlTestA.txt"), "test2");
+        Files.writeString(Path.of("src/files/ProgramControlTestC.txt"), "test3");
+        assertEquals(List.of("ProgramControlTestA.txt", "ProgramControlTestB.txt", "ProgramControlTestC.txt"), ProgramControl.listDataFiles());
     }
+
 
 
 }
