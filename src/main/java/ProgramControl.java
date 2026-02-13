@@ -64,7 +64,15 @@ public class ProgramControl {
             return;
         }
 
-        // Read key data
+        // Assigning which key file to use (default or custom?)
+        String keyFilePath;
+        if (keyArgName == null || keyArgName.isBlank()) {
+            keyFilePath = CIPHER_FOLDER + File.separator + DEFAULT_KEY_FILE;
+        } else {
+            keyFilePath = CIPHER_FOLDER + File.separator + keyArgName;
+        }
+
+        // Reading key data
         fileHandler keyFH = new fileHandler(keyFilePath);
         String keyData = keyFH.fileOut();
 
