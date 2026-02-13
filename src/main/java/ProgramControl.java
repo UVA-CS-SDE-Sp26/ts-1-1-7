@@ -19,7 +19,7 @@ public class ProgramControl {
     public static void printFileList() {
         List<String> files = listDataFiles();
         if (files.isEmpty()) {
-            System.out.println("No files found in data folder");
+            System.out.println("No files found in files folder");
             return;
         }
 
@@ -60,7 +60,7 @@ public class ProgramControl {
         String cipheredText = fh.fileOut();
 
         if (cipheredText == null || cipheredText.isBlank()) {
-            System.out.println("Error: Could not read file: " + filePath);
+            System.out.println("Error: Could not read file");
             return;
         }
 
@@ -77,7 +77,7 @@ public class ProgramControl {
         String keyData = keyFH.fileOut();
 
         if (keyData == null || keyData.isBlank()) {
-            System.out.println("Error: Could not read key file: " + filePath);
+            System.out.println("Error: Could not read key file");
             return;
         }
 
@@ -107,7 +107,7 @@ public class ProgramControl {
             }
         }
 
-        Collections.sort(names);
+        names.sort(String.CASE_INSENSITIVE_ORDER);
         return names;
     }
 
